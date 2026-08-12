@@ -205,7 +205,7 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:1.8px;background:var(--green);transform:translateY(-50%)}
 summary::before{content:"";position:absolute;right:11px;top:50%;width:1.8px;height:12px;background:var(--green);transform:translateY(-50%);transition:transform .2s ease,opacity .2s ease}
 details[open] summary::before{transform:translateY(-50%) rotate(90deg);opacity:0}
-details.closing summary::before{transform:translateY(-50%);opacity:1}
+details.is-closing summary::before{transform:translateY(-50%);opacity:1}
 summary:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 details .answer{
   overflow:hidden;height:0;
@@ -597,7 +597,7 @@ document.querySelectorAll("[data-survey]").forEach(el => {
       d.dataset.anim = "1";
       const opening = !d.open;
 
-      if (opening) d.open = true; else d.classList.add("closing");
+      if (opening) d.open = true; else d.classList.add("is-closing");
       const full = panel.scrollHeight + "px";
       panel.style.height = opening ? "0px" : full;
       void panel.offsetHeight;               // flush the start value, no rAF needed
@@ -609,7 +609,7 @@ document.querySelectorAll("[data-survey]").forEach(el => {
         settled = true;
         panel.removeEventListener("transitionend", onEnd);
         clearTimeout(timer);
-        if (!opening) { d.open = false; d.classList.remove("closing"); }
+        if (!opening) { d.open = false; d.classList.remove("is-closing"); }
         panel.style.height = "";
         delete d.dataset.anim;
       };
