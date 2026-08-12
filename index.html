@@ -13,8 +13,16 @@
 <meta property="og:image" content="https://fynnfamily.com/council-og.jpg">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fynn">
+<meta property="og:url" content="https://olyhelpschoreo.github.io/fynn-council/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fynn Dad Advisors Council">
+<meta name="twitter:description" content="Twenty dads. Ninety days. One system that finally works for everyone in the house.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<noscript><style>
+  /* JS drives the scroll-in animation; without it these blocks would stay at opacity:0 */
+  .reveal,.hero .r1,.hero .r2,.hero .r3,.hero .r4,.hero .r5{opacity:1;transform:none;animation:none}
+</style></noscript>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,7 +259,7 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation:none!important;transition:none!important}
-  .reveal,.hero .r1,.hero .r2,.hero .r3,.hero .r4,.hero .r5,.half--unseen .chip{opacity:1;transform:none}
+  .reveal,.hero .r1,.hero .r2,.hero .r3,.hero .r4,.hero .r5{opacity:1;transform:none}
 }
 
 /* ================================================================
@@ -538,6 +546,10 @@ document.querySelectorAll("[data-start-date]").forEach(el => el.textContent = CO
 document.querySelectorAll("[data-survey]").forEach(el => {
   if (CONFIG.SURVEY_URL && CONFIG.SURVEY_URL !== "#"){
     el.href = CONFIG.SURVEY_URL; el.target = "_blank"; el.rel = "noopener";
+  } else {
+    // no form yet — stop the href="#" jump-to-top, which reads as a broken page
+    el.setAttribute("aria-disabled", "true");
+    el.addEventListener("click", e => e.preventDefault());
   }
 });
 
@@ -548,7 +560,6 @@ document.querySelectorAll("[data-survey]").forEach(el => {
   f.src = CONFIG.VIDEO_URL;
   f.title = "Stefan, co-founder of Fynn";
   f.allow = "fullscreen; picture-in-picture";
-  f.setAttribute("allowfullscreen","");
   slot.innerHTML = ""; slot.appendChild(f);
 })();
 
