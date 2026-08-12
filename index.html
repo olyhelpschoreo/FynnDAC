@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fynn Dad Advisors Council</title>
+
+<meta name="description" content="One year free for your whole family. A direct line to the founders. Real influence on the product.">
+<meta name="theme-color" content="#44755F">
+<meta property="og:title" content="Fynn Dad Advisors Council">
+<meta property="og:description" content="Twenty dads. Ninety days. One system that finally works for everyone in the house.">
+<meta property="og:image" content="https://fynnfamily.com/council-og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fynn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..600;1,400..500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   FYNN COUNCIL
+   Palette derived from fynnfamily.com — brand green #44755F
+   ================================================================ */
+:root{
+  --green:      #44755F;   /* Fynn brand green (site theme-color) */
+  --green-deep: #2C4E3F;
+  --forest:     #1B3428;   /* dark bands */
+  --forest-ink: #12251C;
+  --sage:       #A8BFB1;
+  --sage-tint:  #E3EBE4;
+  --cream:      #FAF7F1;
+  --cream-2:    #F1ECE1;
+  --ink:        #1B241E;
+  --ink-soft:   #5C6961;
+  --line:       #DED7C9;
+  --line-dark:  rgba(255,255,255,.15);
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans:  "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  --pad: 22px;
+  --shell: 1080px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------------- layout ---------------- */
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--pad)}
+.narrow{max-width:660px}
+.band{padding:66px 0}
+.cream{background:var(--cream)}
+.cream2{background:var(--cream-2)}
+.dark{background:var(--forest);color:var(--cream)}
+.dark a{color:var(--sage)}
+
+/* ---------------- type ---------------- */
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.018em;line-height:1.08;margin:0}
+h1{font-size:clamp(2.4rem,8.4vw,4.4rem)}
+h2{font-size:clamp(1.95rem,6.2vw,3.05rem);line-height:1.1}
+h1 em,h2 em{font-style:italic;color:var(--green)}
+.dark h1 em,.dark h2 em{color:var(--sage)}
+h3{font-family:var(--sans);font-weight:600;font-size:1.1rem;letter-spacing:-.01em;line-height:1.3;margin:0}
+p{margin:0 0 1.1em}
+p:last-child{margin-bottom:0}
+.lede{font-size:1.1rem;line-height:1.55}
+.prose{font-family:var(--serif);font-size:1.12rem;line-height:1.62;font-weight:400}
+
+.label{
+  font-family:var(--sans);font-size:.72rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:14px;margin:0 0 24px;
+}
+.label::after{content:"";flex:1;height:1px;background:var(--line)}
+.dark .label{color:var(--sage)}
+.dark .label::after{background:var(--line-dark)}
+
+/* ---------------- top bar ---------------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px var(--pad);transition:background-color .3s ease,box-shadow .3s ease;
+}
+.topbar.solid{background:rgba(250,247,241,.93);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.mark{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--green)}
+.mark svg{width:23px;height:23px;flex:none}
+.mark span{font-family:var(--sans);font-weight:600;font-size:1.06rem}
+.topbar .btn{display:none}
+
+/* ---------------- buttons ---------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--sans);font-weight:600;font-size:.94rem;letter-spacing:.02em;
+  padding:16px 30px;border-radius:100px;border:1.5px solid transparent;
+  text-decoration:none;cursor:pointer;
+  transition:transform .15s ease,box-shadow .18s ease,background-color .18s ease;
+}
+.btn--green{background:var(--green);color:#FBFDFB}
+.btn--green:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(44,78,63,.65)}
+.btn--sage{background:var(--sage-tint);color:var(--forest)}
+.btn--sage:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(0,0,0,.35)}
+.btn--sm{padding:10px 20px;font-size:.85rem}
+.btn:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.btn .arrow{transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(4px)}
+.cta-block{margin-top:34px}
+.cta-block .btn{width:100%}
+.micro{font-family:var(--sans);font-size:.88rem;color:var(--ink-soft);margin:14px 0 0}
+.dark .micro{color:var(--sage)}
+
+/* ---------------- hero ---------------- */
+.hero{padding:112px 0 0;background:var(--cream);position:relative;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-24%;right:-18%;width:78vw;height:78vw;max-width:760px;max-height:760px;
+  background:radial-gradient(circle,rgba(68,117,95,.13),transparent 66%);pointer-events:none;
+}
+.hero .shell{position:relative;z-index:2}
+.hero h1{max-width:16ch}
+.hero .sub{margin-top:26px;max-width:48ch;color:var(--ink-soft)}
+.hero .sub p{margin-bottom:.8em}
+
+.seatstrip{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
+.seats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.seat{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--green);opacity:.9;animation:seatIn .45s ease both}
+.dark .seat{border-color:var(--sage)}
+@keyframes seatIn{from{opacity:0;transform:scale(.4)}to{opacity:.9;transform:none}}
+.seatnote{font-family:var(--sans);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.dark .seatnote{color:var(--sage)}
+
+.heroshot{margin-top:54px}
+.heroshot .frame{
+  aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--cream-2);
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);text-align:center;padding:24px;
+}
+.heroshot img{width:100%;height:100%;object-fit:cover}
+
+/* ---------------- video ---------------- */
+.player{
+  border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--cream);
+  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+}
+.player iframe{width:100%;height:100%;border:0;display:block}
+.playbadge{width:64px;height:64px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center}
+.playbadge svg{width:20px;height:20px;fill:#FBFDFB;margin-left:3px}
+.playlabel{font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+figcaption{font-family:var(--sans);font-size:.9rem;color:var(--ink-soft);margin-top:14px}
+
+/* ---------------- cards ---------------- */
+.cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:36px}
+.card{background:var(--cream);padding:30px 24px;transition:background-color .2s ease}
+.card:hover{background:#FFFDF8}
+.card .ico{width:42px;height:42px;border-radius:50%;background:var(--sage-tint);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.card .ico svg{width:19px;height:19px;stroke:var(--green);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card p{font-size:.97rem;color:var(--ink-soft);margin-top:10px}
+.kicker{font-family:var(--serif);font-size:clamp(1.25rem,4.6vw,1.75rem);line-height:1.28;color:var(--green);margin-top:36px;max-width:26ch;font-style:italic}
+
+/* ---------------- spec ledger ---------------- */
+.spec{margin:34px 0 0}
+.spec .row{padding:22px 0;border-top:1px solid var(--line)}
+.spec .row:last-child{border-bottom:1px solid var(--line)}
+.spec dt{font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:9px}
+.spec dd{margin:0;font-size:1rem;color:var(--ink-soft)}
+.spec ul{margin:14px 0 0;padding:0;list-style:none}
+.spec li{position:relative;padding-left:20px;margin-bottom:8px;font-size:.96rem}
+.spec li::before{content:"";position:absolute;left:0;top:.68em;width:9px;height:1.5px;background:var(--green)}
+.callout{margin-top:34px;padding:30px 26px;border-radius:8px;background:var(--green);color:#F6FAF7}
+.callout p{font-family:var(--serif);font-size:1.12rem;line-height:1.55}
+.callout strong{font-weight:600;font-style:italic}
+
+/* ---------------- fit ---------------- */
+.fitgrid{display:grid;gap:18px;margin-top:36px}
+.fitcard{border-radius:8px;padding:28px 24px;border:1px solid var(--line)}
+.fitcard--yes{background:var(--sage-tint);border-color:#CBDBD0}
+.fitcard--no{background:transparent}
+.fitcard h3{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+.fitcard--yes h3{color:var(--green)}
+.fitcard--no h3{color:var(--ink-soft)}
+.fitcard ul{list-style:none;margin:0;padding:0}
+.fitcard li{position:relative;padding-left:30px;margin-bottom:14px;font-size:.99rem}
+.fitcard li:last-child{margin-bottom:0}
+.fitcard li::before{position:absolute;left:0;top:0;font-family:var(--sans);font-weight:600}
+.fitcard--yes li::before{content:"✓";color:var(--green)}
+.fitcard--no li::before{content:"—";color:#A3ADA6}
+.fitcard--no li{color:var(--ink-soft)}
+
+/* ---------------- faq ---------------- */
+.faq{margin-top:34px}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{font-family:var(--sans);font-weight:600;font-size:1.04rem;padding:22px 40px 22px 0;cursor:pointer;list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:1.8px;background:var(--green);transform:translateY(-50%)}
+summary::before{content:"";position:absolute;right:11px;top:50%;width:1.8px;height:12px;background:var(--green);transform:translateY(-50%);transition:transform .2s ease,opacity .2s ease}
+details[open] summary::before{transform:translateY(-50%) rotate(90deg);opacity:0}
+summary:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+details .answer{padding:0 0 24px;color:var(--ink-soft);max-width:62ch;font-family:var(--serif);font-size:1.05rem}
+
+/* ---------------- closing + footer ---------------- */
+.closing{text-align:center;padding:90px 0;background:var(--forest);color:var(--cream)}
+.closing h2{max-width:20ch;margin:0 auto 34px}
+.closing h2 em{color:var(--sage)}
+.closing .seats{justify-content:center;margin-bottom:30px}
+.closing .seatnote{text-align:center;color:var(--sage);margin-bottom:30px}
+.closing .btn{width:100%}
+.closing .micro{color:var(--sage)}
+footer{padding:52px 0 130px;background:var(--forest-ink);color:var(--sage);font-size:.97rem}
+footer p{margin-bottom:.7em}
+footer a{color:#CBDCD0;text-underline-offset:3px}
+.colophon{margin-top:26px;padding-top:20px;border-top:1px solid var(--line-dark);font-size:.85rem;opacity:.75}
+
+/* ---------------- sticky ---------------- */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));
+  background:rgba(250,247,241,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  transform:translateY(120%);transition:transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.sticky.show{transform:translateY(0)}
+.sticky .btn{width:100%;padding:15px 20px}
+
+/* ---------------- motion ---------------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.hero .r1{animation:heroIn .75s .05s ease both}
+.hero .r2{animation:heroIn .75s .16s ease both}
+.hero .r3{animation:heroIn .75s .28s ease both}
+.hero .r4{animation:heroIn .75s .4s ease both}
+.hero .r5{animation:heroIn .75s .52s ease both}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .reveal,.hero .r1,.hero .r2,.hero .r3,.hero .r4,.hero .r5,.half--unseen .chip{opacity:1;transform:none}
+}
+
+/* ================================================================
+   LARGER SCREENS
+   ================================================================ */
+@media (min-width:640px){
+  .cta-block{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .cta-block .btn,.closing .btn{width:auto}
+  .cta-block .micro{margin-top:0}
+  .fitgrid{grid-template-columns:1fr 1fr}
+}
+@media (min-width:900px){
+  :root{--pad:48px}
+  body{font-size:18px}
+  .band{padding:112px 0}
+  .hero{padding-top:150px}
+  .topbar .btn{display:inline-flex}
+  .hero .sub{font-size:1.18rem}
+  .cards{grid-template-columns:1fr 1fr}
+  .card{padding:40px 34px}
+  .split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:64px;align-items:start}
+  .split .head{position:sticky;top:104px}
+  .heroshot .frame{aspect-ratio:21/9}
+  .closing{padding:132px 0}
+  footer{padding-bottom:60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ TOP BAR ============================ -->
+<div class="topbar" id="topbar">
+  <a class="mark" href="#top">
+    <!-- SWAP: real Fynn funnel mark -->
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#44755F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 4.5h18l-7 8.2V21l-4-2.2v-6.1z"/>
+    </svg>
+    <span>Fynn</span>
+  </a>
+  <a class="btn btn--green btn--sm" data-survey href="#">Apply to the council</a>
+</div>
+
+<!-- ============================ 1 · HERO ============================ -->
+<header class="hero" id="top">
+  <div class="shell">
+    <p class="label r1">Fynn Dad Advisors Council</p>
+
+    <h1 class="r2">The family system dads actually want. <em>Built with twenty of them in the room.</em></h1>
+
+    <div class="sub prose r3">
+      <p>Fynn holds the full picture of your family … and then does something about it. Before we launch, we're bringing on a small group of dads to shape what it becomes.</p>
+      <p>One year free for your whole family. A direct line to the founders. Real influence on the product.</p>
+    </div>
+
+    <div class="cta-block r4">
+      <a class="btn btn--green" data-survey href="#">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="micro">20 spots · Applications close <span data-close-date></span>.</p>
+    </div>
+
+    <div class="seatstrip r5">
+      <div class="seats" id="seats" aria-hidden="true"></div>
+    </div>
+
+    <div class="heroshot r5">
+      <!-- SWAP: <img src="assets/hero.jpg" alt="Stefan with his kids"> — real family in motion, not a stock family at a laptop -->
+      <div class="frame">[Hero image: Stefan with his kids, or a real family in motion. Not a stock family at a laptop.]</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ 2 · VIDEO ============================ -->
+<section class="band cream">
+  <div class="shell narrow reveal">
+    <figure style="margin:0">
+      <div class="player" data-video-slot>
+        <div class="playbadge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="playlabel">[Embed Video 2 — Stefan, ~60 seconds. Autoplay off, captions on by default.]</span>
+      </div>
+      <figcaption>Stefan, co-founder of Fynn. Dad of three.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ 3 · WHY THIS EXISTS ============================ -->
+<section class="band dark">
+  <div class="shell">
+    <div class="split">
+      <div class="head">
+        <h2>You're already running half of it. <em>You just can't see the other half.</em></h2>
+      </div>
+      <div class="prose" style="color:#D6E1D9">
+        <p class="lede">Most dads we talk to are doing plenty. Cooking. Coaching. Driving. Paying for things. Fixing things.</p>
+        <p>And still ending up at the wrong field because the game time changed in an email they never got.</p>
+        <!-- CHECK: the screenshots may have cut a line or two of the doc here. -->
+        <p>That's not a caring problem. It's a system problem, and in most houses, the system lives in one person's head. Everyone else is working from memory and good intentions.</p>
+
+        </div>
+
+        <p style="margin-top:32px">Fynn fixes that. It gives your whole family the same picture of what's happening, and it takes on real work: the reminders, the scheduling, the follow-through that usually falls to whoever noticed first.</p>
+        <p>We built it because we needed it. Now we want to build the rest of it with the dads it's for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 4 · WHAT YOU GET ============================ -->
+<section class="band cream">
+  <div class="shell reveal">
+    <h2>What <em>you get</em></h2>
+
+    <div class="cards">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>A full year, free for your whole family</h3>
+        <p>Not a trial. Twelve months of full access for you, your partner, and your kids from the day we go live. Every feature, no tiers, no card on file.</p>
+      </article>
+
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9h16v11M2 20h20M7 9V5h10v4M12 13v3"/></svg></div>
+        <h3>A seat at the table, not a feedback form</h3>
+        <p>You'll be in a Slack channel with the founders. You'll sit in live sessions with us. When you tell us something is broken, you'll see it change, and you'll know it changed because you said so.</p>
+      </article>
+
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>A product that fits your house</h3>
+        <p>Every family runs differently. Yours will tell us things no research deck ever could. The dads in this group will have more say in what Fynn becomes than anyone outside the company.</p>
+      </article>
+
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 14.2c2.7 0 5 2.2 5 4.9"/></svg></div>
+        <h3>A crew that gets it</h3>
+        <p>There are things about being a dad that are hard to bring up at home and awkward to bring up with friends. This group is a small room of guys in the exact same season of life. That part has surprised us more than anything else.</p>
+      </article>
+    </div>
+
+    <p class="kicker">And when Fynn is in a hundred thousand households, you'll know which parts you built.</p>
+  </div>
+</section>
+
+<!-- ============================ 5 · WHAT WE'RE ASKING ============================ -->
+<section class="band cream2">
+  <div class="shell">
+    <div class="split reveal">
+      <div class="head">
+        <h2>What <em>we're asking</em></h2>
+        <p class="lede prose" style="color:var(--ink-soft);margin-top:20px">We'd rather over-explain this than have you find out in week three. Here's the whole commitment.</p>
+      </div>
+      <dl class="spec">
+        <div class="row">
+          <dt>The window</dt>
+          <dd>90 days, starting <span data-start-date></span>.</dd>
+        </div>
+        <div class="row">
+          <dt>Scheduled time</dt>
+          <dd>About four hours total across three months.
+            <ul>
+              <li>Three monthly email check-ins, 15 minutes each</li>
+              <li>One 60-minute group session with the founders</li>
+              <li>Two 30-minute one-on-one sessions with our marketing lead</li>
+              <li>Ongoing Slack channel, as much or as little as you want</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="row">
+          <dt>Daily use</dt>
+          <dd>You and your partner both set up accounts and actually use Fynn to run your family. This only works if it's your real calendar and your real week.</dd>
+        </div>
+        <div class="row">
+          <dt>Feedback we'll ask for</dt>
+          <dd>What's working, what's broken, what's missing. Plus your read on pricing and on the way we're talking about Fynn publicly. And a short survey at the end on whether your household actually feels different.</dd>
+        </div>
+        <div class="row">
+          <dt>Saying so publicly</dt>
+          <dd>If Fynn works for you, we'll ask you to say so (a short video, a written line we can quote, and a family photo for our marketing). We'll also ask you to mention it to people you think it would help: your league, your group chat, your neighbors.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="callout reveal">
+      <p><strong>That last one is the real ask.</strong> The year free isn't payment for feedback; it's an even trade. We get a product shaped by the exact families it's built for. You get the tool, first, free, and made partly by you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6 · WHO THIS IS FOR ============================ -->
+<section class="band cream">
+  <div class="shell reveal">
+    <h2>Is <em>this you?</em></h2>
+
+    <div class="fitgrid">
+      <div class="fitcard fitcard--yes">
+        <h3>This is a good fit if</h3>
+        <ul>
+          <li>You're a hands-on dad in a two-parent household with kids at home</li>
+          <li>Your partner is willing to use it too — Fynn only works when both of you are in</li>
+          <li>You like being early on things and you have opinions about tools</li>
+          <li>People in your world ask you what you use and what you'd recommend</li>
+          <li>You'll tell us the truth even when it's not what we want to hear</li>
+        </ul>
+      </div>
+
+      <div class="fitcard fitcard--no">
+        <h3>This probably isn't the fit if</h3>
+        <ul>
+          <li>You're looking for a free app and not much else</li>
+          <li>You can't commit to using it daily for 90 days</li>
+          <li>Your partner isn't on board — that's fine, but this isn't the program for it</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 7 · FAQ ============================ -->
+<section class="band cream2">
+  <div class="shell narrow reveal">
+    <h2>FAQ</h2>
+
+    <div class="faq">
+      <details>
+        <summary>Does my partner have to participate?</summary>
+        <div class="answer"><p>Yes. Fynn is built for a household, not a person. You're our primary contact and main tester, but your partner needs an account and needs to use it. A lot of what we're testing is what happens between the two of you.</p></div>
+      </details>
+      <details>
+        <summary>What happens after the free year?</summary>
+        <div class="answer"><p>You choose. Council members will be offered our founding rate, locked in, for as long as you stay. No auto-charge, no surprise. We'll tell you well before the year ends.</p></div>
+      </details>
+      <details>
+        <summary>How much time is this really?</summary>
+        <div class="answer"><p>About four hours of scheduled calls and check-ins over 90 days. The daily use isn't extra time — it's replacing the tools and texts you already use to run your week.</p></div>
+      </details>
+      <details>
+        <summary>Who sees my family's information?</summary>
+        <div class="answer"><p>Your family data is yours. We never sell it, and we never use your family's details in marketing without asking you first and showing you exactly what we want to use.</p></div>
+      </details>
+      <details>
+        <summary>What if it's not working for me?</summary>
+        <div class="answer"><p>Tell us. That's more useful than a polite exit. If you need to step out of the program, you keep the free year and we part on good terms.</p></div>
+      </details>
+      <details>
+        <summary>When do I hear back?</summary>
+        <div class="answer"><p>We review applications weekly and reply either way. If you're a fit, we'll set up a short call before you start.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 8 · CLOSING CTA ============================ -->
+<section class="closing" id="closing">
+  <div class="shell">
+    <div class="reveal">
+      <h2>Twenty dads. Ninety days. <em>One system that finally works for everyone in the house.</em></h2>
+
+      <div class="seats" id="seats2" aria-hidden="true"></div>
+
+      <a class="btn btn--sage" data-survey href="#">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="micro">Applications close <span data-close-date></span> · Takes about 5 minutes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 9 · FOOTER ============================ -->
+<footer>
+  <div class="shell">
+    <p>Questions? Email <a href="mailto:Maddie@FynnFamily.com">Maddie@FynnFamily.com</a></p>
+    <p>Not ready to join but want to follow along? Get on the list at <a href="https://fynnfamily.com">FynnFamily.com</a></p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <a class="btn btn--green" data-survey href="#">Apply to the council</a>
+</div>
+
+<script>
+/* ================================================================
+   CONFIG — change these four things and the whole page updates.
+   ================================================================ */
+const CONFIG = {
+  CLOSE_DATE: "August 14, 2026",   // hero + closing CTA
+  START_DATE: "[DATE]",            // "The window"
+  SURVEY_URL: "#",                 // wires all four Apply buttons
+  VIDEO_URL:  ""                   // Vimeo / unlisted YouTube embed URL
+};
+
+document.querySelectorAll("[data-close-date]").forEach(el => el.textContent = CONFIG.CLOSE_DATE);
+document.querySelectorAll("[data-start-date]").forEach(el => el.textContent = CONFIG.START_DATE);
+
+document.querySelectorAll("[data-survey]").forEach(el => {
+  if (CONFIG.SURVEY_URL && CONFIG.SURVEY_URL !== "#"){
+    el.href = CONFIG.SURVEY_URL; el.target = "_blank"; el.rel = "noopener";
+  }
+});
+
+(function(){
+  const slot = document.querySelector("[data-video-slot]");
+  if (!slot || !CONFIG.VIDEO_URL) return;
+  const f = document.createElement("iframe");
+  f.src = CONFIG.VIDEO_URL;
+  f.title = "Stefan, co-founder of Fynn";
+  f.allow = "fullscreen; picture-in-picture";
+  f.setAttribute("allowfullscreen","");
+  slot.innerHTML = ""; slot.appendChild(f);
+})();
+
+(function(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  ["seats","seats2"].forEach(id => {
+    const host = document.getElementById(id);
+    if (!host) return;
+    for (let i = 0; i < 20; i++){
+      const s = document.createElement("i");
+      s.className = "seat";
+      if (reduce) s.style.animation = "none";
+      else s.style.animationDelay = (0.55 + i * 0.035) + "s";
+      host.appendChild(s);
+    }
+  });
+})();
+
+(function(){
+  const bar = document.getElementById("topbar");
+  const onScroll = () => bar.classList.toggle("solid", window.scrollY > 40);
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+})();
+
+(function(){
+  const sticky = document.getElementById("sticky"),
+        hero = document.querySelector(".hero"),
+        closing = document.getElementById("closing");
+  if (!("IntersectionObserver" in window)) return;
+  let past = false, at = false;
+  const update = () => sticky.classList.toggle("show", past && !at);
+  new IntersectionObserver(e => { past = !e[0].isIntersecting; update(); }, {threshold:0}).observe(hero);
+  new IntersectionObserver(e => { at = e[0].isIntersecting; update(); }, {threshold:0}).observe(closing);
+})();
+
+(function(){
+  const items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    items.forEach(i => i.classList.add("in")); return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:.1, rootMargin:"0px 0px -60px 0px"});
+  items.forEach(i => io.observe(i));
+})();
+</script>
+
+</body>
+</html>
