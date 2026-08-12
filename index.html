@@ -205,8 +205,15 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:1.8px;background:var(--green);transform:translateY(-50%)}
 summary::before{content:"";position:absolute;right:11px;top:50%;width:1.8px;height:12px;background:var(--green);transform:translateY(-50%);transition:transform .2s ease,opacity .2s ease}
 details[open] summary::before{transform:translateY(-50%) rotate(90deg);opacity:0}
+details.closing summary::before{transform:translateY(-50%);opacity:1}
 summary:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-details .answer{padding:0 0 24px;color:var(--ink-soft);max-width:62ch;font-family:var(--serif);font-size:1.05rem}
+details .answer{
+  overflow:hidden;height:0;
+  transition:height .34s cubic-bezier(.2,.7,.3,1);
+  color:var(--ink-soft);max-width:62ch;font-family:var(--serif);font-size:1.05rem;
+}
+details[open] .answer{height:auto}
+details .answer>*{padding-bottom:24px}
 
 /* ---------------- closing + footer ---------------- */
 .closing{text-align:center;padding:90px 0;background:var(--forest);color:var(--cream)}
@@ -575,6 +582,42 @@ document.querySelectorAll("[data-survey]").forEach(el => {
   const update = () => sticky.classList.toggle("show", past && !at);
   new IntersectionObserver(e => { past = !e[0].isIntersecting; update(); }, {threshold:0}).observe(hero);
   new IntersectionObserver(e => { at = e[0].isIntersecting; update(); }, {threshold:0}).observe(closing);
+})();
+
+(function(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;                      // native instant toggle, no animation
+  document.querySelectorAll(".faq details").forEach(d => {
+    const sum = d.querySelector("summary"), panel = d.querySelector(".answer");
+    if (!sum || !panel) return;
+
+    sum.addEventListener("click", e => {
+      e.preventDefault();
+      if (d.dataset.anim) return;          // ignore clicks mid-animation
+      d.dataset.anim = "1";
+      const opening = !d.open;
+
+      if (opening) d.open = true; else d.classList.add("closing");
+      const full = panel.scrollHeight + "px";
+      panel.style.height = opening ? "0px" : full;
+      void panel.offsetHeight;               // flush the start value, no rAF needed
+      panel.style.height = opening ? full : "0px";
+
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        panel.removeEventListener("transitionend", onEnd);
+        clearTimeout(timer);
+        if (!opening) { d.open = false; d.classList.remove("closing"); }
+        panel.style.height = "";
+        delete d.dataset.anim;
+      };
+      function onEnd(ev){ if (ev.propertyName === "height") finish(); }
+      panel.addEventListener("transitionend", onEnd);
+      const timer = setTimeout(finish, 600);   // fallback if transitionend never fires
+    });
+  });
 })();
 
 (function(){
