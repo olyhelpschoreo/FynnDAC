@@ -1,44 +1,39 @@
-# Deploying the Dad Advisors Council page to fynnfamily.com/dadcouncil
+# Vanity URL: fynnfamily.com/dadcouncil
 
-The page is a **single self-contained HTML file**. No build step, no dependencies,
-no framework. The only external requests are Google Fonts.
+The Dad Advisors Council page is hosted for you — you do **not** need to deploy
+any files. All that's needed on fynnfamily.com is a redirect.
 
-## What to do
+Live page:  https://olyhelpschoreo.github.io/FynnDAC/
+Vanity URL: https://fynnfamily.com/dadcouncil
 
-1. Copy the `dadcouncil/` folder from this handoff into the web root of
-   fynnfamily.com (the directory Firebase Hosting publishes — usually `public/`):
+## The change (Firebase Hosting)
 
-       public/
-         dadcouncil/
-           index.html      <- the page
+Add this to the `hosting` block of `firebase.json`, then `firebase deploy --only hosting`:
 
-2. Deploy as normal (`firebase deploy --only hosting`).
+    "redirects": [
+      {
+        "source": "/dadcouncil{,/**}",
+        "destination": "https://olyhelpschoreo.github.io/FynnDAC/",
+        "type": 302
+      }
+    ]
 
-3. The page is then live at **https://fynnfamily.com/dadcouncil**
+If a `redirects` array already exists, just add the object to it.
 
-That's it. Nothing else needs to change.
+The `{,/**}` glob makes both `/dadcouncil` and `/dadcouncil/` work, plus anything
+typed after it.
 
-## Notes
+## Please use 302, not 301
 
-- **Do not rename the folder.** Two asset paths inside the file are absolute
-  (`/dadcouncil/assets/...`), so the folder must be called `dadcouncil`.
-- Assets are optional and not yet supplied. When the favicon and hero image
-  exist, drop them at `public/dadcouncil/assets/favicon.svg` and
-  `public/dadcouncil/assets/hero.jpg`. Until then the page renders fine —
-  the hero shows a placeholder box.
-- The social share image is referenced at `https://fynnfamily.com/council-og.jpg`
-  and does not exist yet, so a texted link shows no preview card.
-  Drop a `council-og.jpg` at the web root to fix.
-- `<meta name="robots" content="noindex, nofollow">` is deliberately in place
-  while the page still has placeholders in it. **Remove that line at launch.**
+302 = temporary. 301 = permanent, and browsers cache it more or less forever —
+if the page ever moves, anyone who visited once keeps getting sent to the old
+place, and it is genuinely painful to undo. 302 costs nothing here and keeps
+the door open.
 
-## Still to be filled in before launch
+## Note
 
-All in one `CONFIG` block at the bottom of the file:
-
-    CLOSE_DATE   currently "August 14, 2026"  <- in the past, needs the real date
-    START_DATE   currently "[DATE]"
-    SURVEY_URL   done - points at the Google Form
-    VIDEO_URL    empty - Stefan's ~60s video not filmed yet
-
-Change those four values and the whole page updates itself.
+Visitors will see the address bar change to the olyhelpschoreo.github.io URL
+after the bounce. That was confirmed as acceptable. If that ever changes, the
+fix is a CNAME record pointing a subdomain (e.g. dadcouncil.fynnfamily.com) at
+olyhelpschoreo.github.io — one DNS record, and the page can then be served
+under the Fynn name with no bounce at all.
