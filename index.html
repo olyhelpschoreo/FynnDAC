@@ -33,6 +33,8 @@
    FYNN COUNCIL
    Palette derived from fynnfamily.com — brand green #44755F
    ================================================================ */
+[hidden]{display:none !important}
+
 :root{
   --green:      #44755F;   /* Fynn brand green (site theme-color) */
   --green-deep: #2C4E3F;
@@ -330,7 +332,9 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
 </header>
 
 <!-- ============================ 2 · VIDEO ============================ -->
-<section class="band cream">
+<!-- Hidden until CONFIG.VIDEO_URL is set. Fill that in and the section reveals
+     itself with the video in place — no markup changes needed. -->
+<section class="band cream" data-video-section hidden>
   <div class="shell narrow reveal">
     <figure style="margin:0">
       <div class="player" data-video-slot>
@@ -554,13 +558,16 @@ document.querySelectorAll("[data-survey]").forEach(el => {
 });
 
 (function(){
+  const section = document.querySelector("[data-video-section]");
   const slot = document.querySelector("[data-video-slot]");
-  if (!slot || !CONFIG.VIDEO_URL) return;
+  if (!section || !slot) return;
+  if (!CONFIG.VIDEO_URL){ section.remove(); return; }  // no video yet — no empty band
   const f = document.createElement("iframe");
   f.src = CONFIG.VIDEO_URL;
   f.title = "Stefan, co-founder of Fynn";
   f.allow = "fullscreen; picture-in-picture";
   slot.innerHTML = ""; slot.appendChild(f);
+  section.hidden = false;
 })();
 
 (function(){
