@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="build" content="2026-09-03-1830">
+<meta name="build" content="2026-09-03-1915">
 <title>Fynn Dad Advisors Council</title>
 
 <meta name="description" content="One year free for your whole family. A direct line to the founders. Real influence on the product.">
@@ -197,13 +197,13 @@ figcaption{font-family:var(--sans);font-size:.9rem;color:var(--ink-soft);margin-
 .fitcard--yes{background:var(--sage-tint);border-color:#CBDBD0}
 .fitcard--no{background:transparent}
 .fitcard h3{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
-.fitcard--yes h3{color:var(--green)}
+.fitcard--yes h3{color:var(--green-deep)}   /* --green is 4.37 on --sage-tint; AA needs 4.5 */
 .fitcard--no h3{color:var(--ink-soft)}
 .fitcard ul{list-style:none;margin:0;padding:0}
 .fitcard li{position:relative;padding-left:30px;margin-bottom:14px;font-size:.99rem}
 .fitcard li:last-child{margin-bottom:0}
 .fitcard li::before{position:absolute;left:0;top:0;font-family:var(--sans);font-weight:600}
-.fitcard--yes li::before{content:"✓";color:var(--green)}
+.fitcard--yes li::before{content:"✓";color:var(--green-deep)}  /* same 4.37 problem */
 .fitcard--no li::before{content:"—";color:#A3ADA6}
 .fitcard--no li{color:var(--ink-soft)}
 
@@ -287,6 +287,35 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
   .closing{padding:132px 0}
   footer{padding-bottom:60px}
 }
+
+/* ---------------- print ----------------
+   Browsers omit background colours when printing unless the reader turns them on,
+   so anything relying on a dark band has to be re-coloured for paper. Scroll-reveal
+   sections also have to be forced visible or the printout is mostly blank. */
+@media print{
+  .topbar,.sticky{display:none !important}
+
+  .reveal,.hero .r1,.hero .r2,.hero .r3,.hero .r4,.hero .r5{
+    opacity:1 !important;transform:none !important;animation:none !important
+  }
+
+  .dark,.closing{background:#fff !important;color:#000 !important}
+  .dark h1,.dark h2,.dark h3,.dark p,.dark li,.dark dt,.dark dd,
+  .closing h2,.closing p{color:#000 !important}
+  .dark a,.dark h1 em,.dark h2 em,.dark .label,.dark .micro,.dark .seatnote,
+  .closing h2 em,.closing .seatnote,.closing .micro{color:#2C4E3F !important}
+  .btn{border:1px solid #2C4E3F !important;background:#fff !important;color:#2C4E3F !important}
+
+  /* a printed page can't be clicked — show where the button goes */
+  a[data-survey]::after{content:" — " attr(href);font-size:.72em;word-break:break-all}
+
+  .band,.hero{padding:20px 0 !important}
+  .heroshot{margin-top:20px !important}
+  details{break-inside:avoid}
+  details>*{display:revert !important}
+  details:not([open])>summary~*{display:none !important}
+  body{background:#fff !important}
+}
 </style>
 </head>
 <body>
@@ -300,7 +329,7 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
     </svg>
     <span>Fynn</span>
   </a>
-  <a class="btn btn--green btn--sm" data-survey href="#">Apply to the council</a>
+  <a class="btn btn--green btn--sm" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfLS8nGiTH3nYQLrf84BArGlwtcaMNB8k2wx69t8Zh2F242Nw/viewform" target="_blank" rel="noopener">Apply to the council</a>
 </div>
 
 <!-- ============================ 1 · HERO ============================ -->
@@ -316,8 +345,8 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
     </div>
 
     <div class="cta-block r4">
-      <a class="btn btn--green" data-survey href="#">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
-      <p class="micro">20 spots · Applications close <span data-close-date></span>.</p>
+      <a class="btn btn--green" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfLS8nGiTH3nYQLrf84BArGlwtcaMNB8k2wx69t8Zh2F242Nw/viewform" target="_blank" rel="noopener">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="micro">20 spots · Applications close <span data-close-date>September 8, 2026</span>.</p>
     </div>
 
     <div class="seatstrip r5">
@@ -411,7 +440,7 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
       <dl class="spec">
         <div class="row">
           <dt>The window</dt>
-          <dd>90 days, starting <span data-start-date></span>.</dd>
+          <dd>90 days, starting <span data-start-date>[DATE]</span>.</dd>
         </div>
         <div class="row">
           <dt>Scheduled time</dt>
@@ -516,8 +545,8 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
 
       <div class="seats" id="seats2" aria-hidden="true"></div>
 
-      <a class="btn btn--sage" data-survey href="#">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
-      <p class="micro">Applications close <span data-close-date></span> · Takes about 5 minutes</p>
+      <a class="btn btn--sage" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfLS8nGiTH3nYQLrf84BArGlwtcaMNB8k2wx69t8Zh2F242Nw/viewform" target="_blank" rel="noopener">Apply to the council <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="micro">Applications close <span data-close-date>September 8, 2026</span> · Takes about 5 minutes</p>
     </div>
   </div>
 </section>
@@ -531,7 +560,7 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
 </footer>
 
 <div class="sticky" id="sticky">
-  <a class="btn btn--green" data-survey href="#">Apply to the council</a>
+  <a class="btn btn--green" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfLS8nGiTH3nYQLrf84BArGlwtcaMNB8k2wx69t8Zh2F242Nw/viewform" target="_blank" rel="noopener">Apply to the council</a>
 </div>
 
 <script>
@@ -545,13 +574,34 @@ const CONFIG = {
   VIDEO_URL:  ""                   // Vimeo / unlisted YouTube embed URL
 };
 
-document.querySelectorAll("[data-close-date]").forEach(el => el.textContent = CONFIG.CLOSE_DATE);
-document.querySelectorAll("[data-start-date]").forEach(el => el.textContent = CONFIG.START_DATE);
+/* The dates and the form link are ALSO written directly into the markup above, so the
+   page still works with JavaScript switched off — otherwise the four Apply buttons are
+   dead "#" links and the page reads "Applications close ." with no date.
+   CONFIG stays the control panel and overwrites them here; the console warnings below
+   catch the two copies drifting apart. */
+function fillDate(sel, value, name){
+  document.querySelectorAll(sel).forEach(el => {
+    const inMarkup = el.textContent.trim();
+    if (inMarkup && inMarkup !== value){
+      console.warn("[fynn] " + name + ': markup says "' + inMarkup + '" but CONFIG says "' + value +
+                   '". Update both — the markup copy is what shows without JavaScript.');
+    }
+    el.textContent = value;
+  });
+}
+fillDate("[data-close-date]", CONFIG.CLOSE_DATE, "CLOSE_DATE");
+fillDate("[data-start-date]", CONFIG.START_DATE, "START_DATE");
 
 document.querySelectorAll("[data-survey]").forEach(el => {
-  if (CONFIG.SURVEY_URL && CONFIG.SURVEY_URL !== "#"){
-    el.href = CONFIG.SURVEY_URL; el.target = "_blank"; el.rel = "noopener";
-  } else {
+  const url = CONFIG.SURVEY_URL;
+  if (url && url !== "#"){
+    if (el.getAttribute("href") !== url){
+      console.warn("[fynn] SURVEY_URL: the link in the markup differs from CONFIG. " +
+                   "Update both — the markup copy is what works without JavaScript.");
+    }
+    el.href = url; el.target = "_blank"; el.rel = "noopener";
+    el.removeAttribute("aria-disabled");
+  } else if (!el.getAttribute("href") || el.getAttribute("href") === "#"){
     // no form yet — stop the href="#" jump-to-top, which reads as a broken page
     el.setAttribute("aria-disabled", "true");
     el.addEventListener("click", e => e.preventDefault());
@@ -591,7 +641,7 @@ document.querySelectorAll("[data-survey]").forEach(el => {
       if (!m || m[1] === mine.content) return;                      // already current
       if (last && last.s === m[1] && Date.now() - last.t < 30000) return;  // just tried
       try { sessionStorage.setItem(KEY, JSON.stringify({ s: m[1], t: Date.now() })); } catch (e) {}
-      location.replace(location.pathname + "?v=" + encodeURIComponent(m[1]));
+      location.replace(location.pathname + "?v=" + encodeURIComponent(m[1]) + location.hash);
     })
     .catch(() => {});
 })();
