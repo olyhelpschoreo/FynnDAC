@@ -150,7 +150,7 @@ p:last-child{margin-bottom:0}
 
 .heroshot{margin-top:54px}
 .heroshot .frame{
-  aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--cream-2);
+  aspect-ratio:3/2;border-radius:8px;overflow:hidden;background:var(--cream-2);
   border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
   font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink-soft);text-align:center;padding:24px;
@@ -283,7 +283,6 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
   .cards{grid-template-columns:1fr 1fr}
   .card{padding:40px 34px}
   .split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:64px;align-items:start}
-  .heroshot .frame{aspect-ratio:21/9}
   .closing{padding:132px 0}
   footer{padding-bottom:60px}
 }
@@ -325,8 +324,9 @@ footer a{color:#CBDCD0;text-underline-offset:3px}
     </div>
 
     <div class="heroshot r5">
-      <!-- SWAP: <img src="assets/hero.jpg" alt="Stefan with his kids"> — real family in motion, not a stock family at a laptop -->
-      <div class="frame">[Hero image: Stefan with his kids, or a real family in motion. Not a stock family at a laptop.]</div>
+      <div class="frame">
+        <img src="assets/hero.jpg" width="1600" height="1200"
+             alt="A dad reading a picture book at the table with his two young children, all three looking at the page."></div>
     </div>
   </div>
 </header>
